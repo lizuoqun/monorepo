@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,html,css,scss,md}\""
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.7.0",
+    "prettier": "^3.6.2",
     "typescript": "^5.9.3"
   }
 }

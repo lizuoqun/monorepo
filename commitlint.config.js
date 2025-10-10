@@ -35,17 +35,17 @@ export default {
     // 禁用提交时自动打开浏览器
     enableBrowser: false,
     types: [
-      {value: 'feat', name: '新功能✨'},
-      {value: 'fix', name: '修复bug🐛'},
-      {value: 'docs', name: '文档变更📚'},
-      {value: 'style', name: '代码格式💄'},
-      {value: 'refactor', name: '重构♻️'},
-      {value: 'perf', name: '性能优化⚡️'},
-      {value: 'test', name: '增加测试✅'},
-      {value: 'build', name: '构建系统📦'},
-      {value: 'ci', name: '持续集成🔧'},
-      {value: 'chore', name: '构建过程或辅助工具的变动'},
-      {value: 'revert', name: '回退⏪'}
+      { value: 'feat', name: '新功能✨' },
+      { value: 'fix', name: '修复bug🐛' },
+      { value: 'docs', name: '文档变更📚' },
+      { value: 'style', name: '代码格式💄' },
+      { value: 'refactor', name: '重构♻️' },
+      { value: 'perf', name: '性能优化⚡️' },
+      { value: 'test', name: '增加测试✅' },
+      { value: 'build', name: '构建系统📦' },
+      { value: 'ci', name: '持续集成🔧' },
+      { value: 'chore', name: '构建过程或辅助工具的变动' },
+      { value: 'revert', name: '回退⏪' }
     ],
     scopes: ['root', 'backend', 'frontend', 'components', 'utils'],
     allowCustomScopes: true,

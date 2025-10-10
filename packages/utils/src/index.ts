@@ -1,1 +1,2 @@
-console.log('hello utils');
+export * from './math';
+export * from './string';

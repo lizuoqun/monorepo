@@ -4,3 +4,8 @@ node_modules
 .vscode
 .DS_Store
 package-lock.json
+pnpm-lock.yaml
+# 忽略所有 __test__ 文件夹
+__test__/
+# 或者更具体地忽略 utils 包下的 __test__ 文件夹
+packages/utils/__test__/

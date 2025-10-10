@@ -3,9 +3,11 @@
     "baseUrl": ".",
     "module": "esnext",
     "target": "esnext",
-    "types": [],
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types"],
     "lib": [
-      "esnext"
+      "esnext",
+      "dom"
     ],
     "sourceMap": true,
     "declaration": true,

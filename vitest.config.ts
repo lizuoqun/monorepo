@@ -1,4 +1,4 @@
-import {defineConfig} from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 
 // vitest配置 https://cn.vitest.dev/config/
 export default defineConfig({
@@ -18,7 +18,6 @@ export default defineConfig({
       skipFull: true,
       // 即使测试失败也会生成覆盖率报告
       reportOnFailure: true
-
     }
   }
 });

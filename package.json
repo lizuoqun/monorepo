@@ -12,7 +12,9 @@
     "prepare": "husky",
     "precommit": "lint-staged",
     "test-coverage": "vitest run --coverage",
-    "test-ui": "vitest --ui"
+    "test-ui": "vitest --ui",
+    "build": "rollup -c rollup.config.js",
+    "build:rollup": "rollup ./scripts/main.ts --file ./dist/main.js --format iife"
   },
   "config": {
     "commitizen": {
@@ -48,6 +50,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",
+    "rollup": "^4.52.4",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
     "vite": "6.0.0",

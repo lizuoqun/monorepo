@@ -1,4 +1,4 @@
-import {babel} from '@rollup/plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 
 export default {
   input: './scripts/main.ts',
@@ -9,5 +9,5 @@ export default {
     format: 'iife',
     name: 'modify'
   },
-  plugins: [babel({babelHelpers: 'runtime', exclude: 'node_modules/**', extensions: ['.js', '.jsx', 'ts', '.tsx']})]
+  plugins: [babel({ babelHelpers: 'runtime', exclude: 'node_modules/**', extensions: ['.js', '.jsx', 'ts', '.tsx'] })]
 };

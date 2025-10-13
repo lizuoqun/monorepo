@@ -1,3 +1,5 @@
+import {babel} from '@rollup/plugin-babel';
+
 export default {
   input: './scripts/main.ts',
   output: {
@@ -5,10 +7,7 @@ export default {
     // dir: 'dist',
     file: './dist/bundle.js',
     format: 'iife',
-    name: 'modify',
-    piugins: []
+    name: 'modify'
   },
-  plugins: [
-    // 插件
-  ]
+  plugins: [babel({babelHelpers: 'runtime', exclude: 'node_modules/**', extensions: ['.js', '.jsx', 'ts', '.tsx']})]
 };

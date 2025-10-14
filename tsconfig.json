@@ -3,8 +3,13 @@
     "baseUrl": ".",
     "module": "esnext",
     "target": "esnext",
-    "types": ["node"],
-    "typeRoots": ["./node_modules/@types"],
+    "types": [
+      "node",
+      "vue"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "lib": [
       "esnext",
       "dom"
@@ -17,13 +22,19 @@
     "strict": true,
     "verbatimModuleSyntax": true,
     "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
+    "allowSyntheticDefaultImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
   },
   "exclude": [
     "node_modules",
     "dist"
+  ],
+  "include": [
+    "scripts/**/*.ts",
+    "scripts/**/*.vue"
   ]
 }

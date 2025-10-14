@@ -5,12 +5,16 @@ import htmlTemplate from 'rollup-plugin-generate-html-template';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
+import vuePlugin from 'rollup-plugin-vue';
+import postcss from 'rollup-plugin-postcss';
+import cssnano from 'cssnano';
+import autoprefixer from 'autoprefixer';
 
 export default {
   // 单入口打包
-  // input: './scripts/main.ts',
+  // input: './scripts/main.js',
   input: {
-    index: './scripts/main.ts'
+    index: './scripts/main.js'
   },
   output: [
     {
@@ -30,6 +34,15 @@ export default {
     }
   ],
   plugins: [
+    // 处理vue单文件组件（模版）
+    vuePlugin(),
+    // 处理vue单文件组件（样式）
+    postcss({
+      // 把样式抽离到单独的文件中
+      extract: true,
+      // extract: 'dist/my-custom-file-name.css',
+      plugins: [cssnano(), autoprefixer()]
+    }),
     // babel 代码降级插件
     babel({babelHelpers: 'runtime', exclude: 'node_modules/**', extensions: ['.js', '.jsx', 'ts', '.tsx']}),
     // 清除 dist 目录插件

@@ -1,6 +1,6 @@
 <!-- 组件 -->
 <script setup lang="js">
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const massage = ref('Hello Vue3!');
 </script>

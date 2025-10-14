@@ -1,4 +1,4 @@
-import { defineConfig } from 'eslint/config';
+import {defineConfig} from 'eslint/config';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
@@ -14,11 +14,15 @@ export default defineConfig(
   {
     ignores,
     extends: [eslint.configs.recommended, ...tseslint.configs.recommended, eslintConfigPrettier],
-    plugins: { prettier: eslintPluginPrettier },
+    plugins: {prettier: eslintPluginPrettier},
     languageOptions: {
       ecmaVersion: 'latest', // ECMAScript 版本
       sourceType: 'module', // 模块化类型
-      parser: tseslint.parser // 解析器
+      parser: tseslint.parser, // 解析器
+      // 在rollup等配置文件当中也会使用到node环境
+      globals: {
+        ...globals.node
+      }
     },
     rules: {
       // 自定义规则

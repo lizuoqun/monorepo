@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>打包自动注入</title>
+    <!--iife-->
+    <script src="https://unpkg.com/vue@3.5.22/dist/vue.global.js"></script>
+    <!--es modules-->
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.22/+esm"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>

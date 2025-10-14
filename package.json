@@ -13,7 +13,8 @@
     "precommit": "lint-staged",
     "test-coverage": "vitest run --coverage",
     "test-ui": "vitest --ui",
-    "build": "rollup -c rollup.config.js",
+    "build": "set NODE_ENV=production&& rollup -c rollup.config.js",
+    "build:cross-env": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "build:rollup": "rollup scripts/main.js --file ./dist/main.js --format iife"
   },
   "config": {
@@ -50,6 +51,7 @@
     "@vue/runtime-core": "^3.5.22",
     "autoprefixer": "^10.4.21",
     "commitizen": "^4.3.1",
+    "cross-env": "^10.1.0",
     "cspell": "^9.2.1",
     "cssnano": "^7.1.1",
     "cz-git": "^1.12.0",

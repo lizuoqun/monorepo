@@ -10,6 +10,9 @@ import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
 
+console.log('process.env.NODE_ENV =====', process.env.NODE_ENV);
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default {
   // 单入口打包
   // input: './scripts/main.js',
@@ -24,7 +27,8 @@ export default {
       dir: 'dist',
       format: 'esm',
       entryFileNames: '[name].min.js',
-      plugins: [terser()]
+      plugins: [isProduction ? terser() : ''],
+      globals: { vue: 'Vue' }
     },
     {
       dir: 'dist',
@@ -76,5 +80,7 @@ export default {
       host: 'localhost',
       port: 10000
     })
-  ]
+  ],
+  // 排除包
+  external: ['vue']
 };

@@ -61,6 +61,7 @@
     "rollup": "^4.52.4",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-generate-html-template": "^1.7.0",
+    "rollup-plugin-serve": "^3.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
     "vite": "6.0.0",

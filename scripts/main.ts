@@ -1,4 +1,4 @@
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const state = ref(0);
 
@@ -10,7 +10,4 @@ console.log('1 =====', random());
 console.log('2 =====', random());
 console.log('state =====', state.value);
 
-export {
-  state,
-  random
-};
+export { state, random };

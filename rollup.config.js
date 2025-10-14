@@ -4,6 +4,7 @@ import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import serve from 'rollup-plugin-serve';
 
 export default {
   // 单入口打包
@@ -53,6 +54,14 @@ export default {
       __buildVersion: 15,
       // 防止替换字符串后跟单个等号
       preventAssignment: true
+    }),
+    // 启动一个静态服务器
+    serve({
+      open: true,
+      contentBase: 'dist',
+      openPage: '/index.html',
+      host: 'localhost',
+      port: 10000
     })
   ]
 };

@@ -1,4 +1,4 @@
-import {defineConfig} from 'eslint/config';
+import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
@@ -14,7 +14,7 @@ export default defineConfig(
   {
     ignores,
     extends: [eslint.configs.recommended, ...tseslint.configs.recommended, eslintConfigPrettier],
-    plugins: {prettier: eslintPluginPrettier},
+    plugins: { prettier: eslintPluginPrettier },
     languageOptions: {
       ecmaVersion: 'latest', // ECMAScript 版本
       sourceType: 'module', // 模块化类型

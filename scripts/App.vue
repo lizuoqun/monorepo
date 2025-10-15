@@ -8,6 +8,9 @@ const massage = ref('Hello Vue3!');
 <template>
   <div>
     <div class="title">{{ massage }}</div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <router-view></router-view>
   </div>
 </template>
 <style>

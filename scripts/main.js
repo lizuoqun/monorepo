@@ -1,4 +1,4 @@
-import {createApp, ref} from 'vue';
+import { createApp, ref } from 'vue';
 import App from './App.vue';
 import router from './router';
 
@@ -12,7 +12,7 @@ console.log('1 =====', random());
 console.log('2 =====', random());
 console.log('state =====', state.value);
 
-export {state, random};
+export { state, random };
 
 const app = createApp(App);
 app.use(router);

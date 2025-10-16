@@ -1,12 +1,14 @@
-import { createMemoryHistory, createRouter } from 'vue-router';
+// router.ts 文件内容示例
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from './components/Home.vue';
 
 const routes = [
-  { path: '/', component: () => import('./components/Home.vue') },
+  { path: '/', component: Home },
   { path: '/about', component: () => import('./components/About.vue') }
 ];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes
 });
 

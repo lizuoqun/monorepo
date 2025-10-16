@@ -1,11 +1,11 @@
 import { createApp, ref } from 'vue';
 import App from './App.vue';
-import router from './router.ts';
+import router from './router';
 
 const state = ref(0);
 
 const random = () => {
-  return Math.random().toString(36).substr(2);
+  return Math.random().toString(36).slice(2);
 };
 
 console.log('1 =====', random());

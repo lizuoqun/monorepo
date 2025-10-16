@@ -2,12 +2,12 @@
 <script setup lang="js">
 import { ref } from 'vue';
 
-const massage = ref('Hello Vue3!');
+const message = ref('Hello Vue3!');
 </script>
 
 <template>
   <div>
-    <div class="title">{{ massage }}</div>
+    <div class="title">{{ message }}</div>
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
     <router-view></router-view>

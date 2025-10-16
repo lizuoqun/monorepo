@@ -1,9 +1,9 @@
-import {babel} from '@rollup/plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import alias from '@rollup/plugin-alias';
 import clear from 'rollup-plugin-clear';
 import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
-import {nodeResolve} from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import vuePlugin from 'rollup-plugin-vue';
@@ -58,7 +58,7 @@ export default {
   plugins: [
     // 路径别名
     alias({
-      entries: [{find: '@', replacement: './scripts'}]
+      entries: [{ find: '@', replacement: './scripts' }]
     }),
     // 处理vue单文件组件（模版）
     vuePlugin(),
@@ -72,7 +72,7 @@ export default {
     // ts支持
     // typescript(),
     // babel 代码降级插件
-    babel({babelHelpers: 'runtime', exclude: 'node_modules/**', extensions: ['.js', '.jsx', 'ts', '.tsx']}),
+    babel({ babelHelpers: 'runtime', exclude: 'node_modules/**', extensions: ['.js', '.jsx', 'ts', '.tsx'] }),
     // 清除 dist 目录插件
     clear({
       targets: ['dist'],
@@ -87,7 +87,7 @@ export default {
       attrs: ['type="module"']
     }),
     // 打包第三方依赖
-    nodeResolve({browser: true}),
+    nodeResolve({ browser: true }),
     // 替换打包结果中的关键词（浏览器不兼容）
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),

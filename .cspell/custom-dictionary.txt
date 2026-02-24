@@ -1,1 +1,10 @@
 cspell
+langchain
+ollama
+Ollama
+Qwen
+modelscope
+chartset
+GGUF
+vectorstores
+mxbai

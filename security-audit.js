@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
-import {fileURLToPath} from 'url';
-import {exec} from 'child_process';
-import {promisify} from 'util';
+import { fileURLToPath } from 'url';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
@@ -32,7 +32,7 @@ const __dirname = path.dirname(__filename);
 const workBasePath = path.join(__dirname, 'work');
 const createWorkDir = async () => {
   const workDir = path.join(workBasePath);
-  await fs.promises.mkdir(workDir, {recursive: true});
+  await fs.promises.mkdir(workDir, { recursive: true });
   return workDir;
 };
 
@@ -42,20 +42,20 @@ const createWorkDir = async () => {
  * */
 const EXTERNAL_LINK_HTTP = 'http://';
 const EXTERNAL_LINK_HTTPS = 'https://';
-const parseProject = async (projectRoot) => {
+const parseProject = async projectRoot => {
   if (projectRoot.startsWith(EXTERNAL_LINK_HTTP) || projectRoot.startsWith(EXTERNAL_LINK_HTTPS)) {
     return parseRemoteProject(projectRoot);
   }
   return parseLocalProject(projectRoot);
 };
 
-const parseLocalProject = async (projectRoot) => {
+const parseLocalProject = async projectRoot => {
   const packageJsonPath = path.join(projectRoot, 'package.json');
   const json = await fs.promises.readFile(packageJsonPath, 'utf-8');
   return JSON.parse(json);
 };
 
-const parseRemoteProject = async (url) => {
+const parseRemoteProject = async url => {
   console.log('开始解析远程项目:', url);
   // TODO: 实现远程项目解析
   throw new Error('远程项目解析尚未实现');
@@ -64,7 +64,18 @@ const parseRemoteProject = async (url) => {
 let projectName = '';
 const generateLock = async (workDir, packageJson) => {
   // 只保留指定的属性
-  const allowedKeys = ['name', 'version', 'description', 'main', 'scripts', 'repository', 'keywords', 'author', 'license', 'dependencies'];
+  const allowedKeys = [
+    'name',
+    'version',
+    'description',
+    'main',
+    'scripts',
+    'repository',
+    'keywords',
+    'author',
+    'license',
+    'dependencies'
+  ];
   const filteredPackageJson = {};
 
   allowedKeys.forEach(key => {
@@ -80,7 +91,7 @@ const generateLock = async (workDir, packageJson) => {
   await createLockFile(workDir);
 };
 
-const createLockFile = async (workDir) => {
+const createLockFile = async workDir => {
   const cmd = `npm install --package-lock-only --force`;
   await runCommand(cmd, workDir);
 };
@@ -92,7 +103,7 @@ const createLockFile = async (workDir) => {
  * @returns {Promise<{stdout: string, stderr: string}>}
  */
 const runCommand = async (command, cwd) => {
-  const {stdout, stderr} = await execAsync(command, {
+  const { stdout, stderr } = await execAsync(command, {
     cwd,
     maxBuffer: 1024 * 1024 * 10 * 10 // 100MB buffer
   });
@@ -101,20 +112,17 @@ const runCommand = async (command, cwd) => {
     console.error('命令执行警告:', stderr);
   }
 
-  return {stdout, stderr};
+  return { stdout, stderr };
 };
 
-
 const audit = async (workDir, savePath) => {
-
   console.log('开始执行命令:', workDir);
   const cmd = `npm audit --json`;
   try {
-    const {stdout} = await runCommand(cmd, workDir);
+    const { stdout } = await runCommand(cmd, workDir);
     const auditResult = JSON.parse(stdout);
 
-
-    await fs.promises.mkdir(savePath, {recursive: true});
+    await fs.promises.mkdir(savePath, { recursive: true });
     const resultPath = path.join(savePath, `audit-result.json`);
     await fs.promises.writeFile(resultPath, JSON.stringify(auditResult, null, 2));
 
@@ -122,7 +130,7 @@ const audit = async (workDir, savePath) => {
   } catch (error) {
     if (error.stdout) {
       const rawOutputPath = path.join(savePath, `audit-result.json`);
-      await fs.promises.mkdir(savePath, {recursive: true});
+      await fs.promises.mkdir(savePath, { recursive: true });
       await fs.promises.writeFile(rawOutputPath, error.stdout);
       console.log(`原始输出已保存到：${rawOutputPath}`);
     }
@@ -131,7 +139,7 @@ const audit = async (workDir, savePath) => {
 
 const generateReport = async (workDir, savePath) => {
   // 确保保存目录存在
-  await fs.promises.mkdir(savePath, {recursive: true});
+  await fs.promises.mkdir(savePath, { recursive: true });
 
   // 查找最新的审计结果文件
   const files = await fs.promises.readdir(savePath);
@@ -167,7 +175,7 @@ const generateReport = async (workDir, savePath) => {
 
   if (vulnKeys.length > 0) {
     // 按严重程度分类统计
-    const severityCount = {info: 0, low: 0, moderate: 0, high: 0, critical: 0};
+    const severityCount = { info: 0, low: 0, moderate: 0, high: 0, critical: 0 };
     vulnKeys.forEach(name => {
       const severity = vulnerabilities[name].severity;
       if (severityCount[severity] !== undefined) {
@@ -189,7 +197,7 @@ const generateReport = async (workDir, savePath) => {
     report += `## 漏洞详情\n\n`;
 
     // 按严重程度排序
-    const severityOrder = {critical: 0, high: 1, moderate: 2, low: 3, info: 4};
+    const severityOrder = { critical: 0, high: 1, moderate: 2, low: 3, info: 4 };
     vulnKeys.sort((a, b) => severityOrder[vulnerabilities[a].severity] - severityOrder[vulnerabilities[b].severity]);
 
     vulnKeys.forEach(name => {
@@ -228,7 +236,6 @@ const generateReport = async (workDir, savePath) => {
       report += `**描述**:\n${vuln.description || '--'}\n\n`;
       report += `**建议**:\n${vuln.recommendation || '--'}\n\n`;
 
-
       report += `---\n\n`;
     });
   } else {
@@ -246,7 +253,7 @@ const generateReport = async (workDir, savePath) => {
 /**
  * 获取严重程度徽章
  */
-const getSeverityBadge = (severity) => {
+const getSeverityBadge = severity => {
   const badges = {
     critical: '🔴 Critical',
     high: '🟠 High',

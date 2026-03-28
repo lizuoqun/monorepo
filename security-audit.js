@@ -85,7 +85,8 @@ const generateLock = async (workDir, packageJson) => {
   });
 
   // 写入 package.json
-  await fs.promises.writeFile(path.join(workDir, 'package.json'), JSON.stringify(filteredPackageJson, null, 2));
+  // await fs.promises.writeFile(path.join(workDir, 'package.json'), JSON.stringify(filteredPackageJson, null, 2));
+  await fs.promises.writeFile(path.join(workDir, 'package.json'), JSON.stringify(packageJson, null, 2));
   projectName = filteredPackageJson.name;
   // 生成 lock 文件
   await createLockFile(workDir);

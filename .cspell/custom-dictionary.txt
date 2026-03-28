@@ -8,3 +8,5 @@ chartset
 GGUF
 vectorstores
 mxbai
+nomic
+deepseek
